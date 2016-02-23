@@ -1,0 +1,65 @@
+<#import "../layout/defaultLayout.ftl.html" as layout>
+<@layout.myLayout "${i18n('app.name')} ${i18n('project.detail')}">
+<h3 class="page-header">${i18n('project.detail')}</h3>
+<#if project??>
+    <div>
+        <div class="right-container">
+            <ul class="list-unstyled list-inline">
+                <li><a class="pull-right" href="/project">${i18n('project.list')}</a></li>
+                <li><a class="pull-right" href="/project/${project.id}/edit">${i18n('button.edit')}</a></li>
+            </ul>
+        </div>
+        <dl class="dl-horizontal">
+            <dt>${i18n('project.id')}</dt><dd>${project.id}</dd>
+            <dt>${i18n('project.name')}</dt><dd>${project.name}</dd>
+            <dt>${i18n('project.customer')}</dt><dd>${project.customer}</dd>
+            <dt>${i18n('project.executor')}</dt><dd>${(project.executor!)}</dd>
+            <dt>${i18n('project.beginDate')}</dt><dd>${(project.beginDate?date)!}</dd>
+            <dt>${i18n('project.endDate')}</dt><dd>${(project.endDate?date)!}</dd>
+        </dl>
+    </div>
+    <table class="table table-bordered table-striped">
+        <tbody>
+            <tr>
+                <form method="post" action="/project/${project.id}/employee">
+                <th>
+                    <input type="hidden" name="id" id="id"/>
+                </th>
+                <th>
+                    <input type="text" name="fName" id="fName" required placeholder="${i18n('employee.fName')}"/>
+                </th>
+                <th>
+                    <input type="text" name="lName" id="lName" required placeholder="${i18n('employee.lName')}"/>
+                </th>
+                <th>
+                    <input type="submit" class="btn btn-primary" value="${i18n('button.add')}"/>
+                </th>
+                </form>
+            </tr>
+            <tr>
+                <th>${i18n('employee.id')}</th>
+                <th>${i18n('employee.fName')}</th>
+                <th>${i18n('employee.lName')}</th>
+                <th></th>
+            </tr>
+            <#if project.employees??>
+            <#list project.employees as employee>
+                <tr>
+                    <td>${(employee.id!)}</td>
+                    <td>${(employee.fName!)}</td>
+                    <td>${(employee.lName!)}</td>
+                    <td>
+                        <a href="/project/${project.id}/employee/delete?empId=${employee.id}">${i18n('button.detach')}</a>
+                        <a href="/employee/${employee.id}">${i18n('button.view')}</a>
+                    </td>
+                </tr>
+            </#list>
+            <#else>
+                ${i18n('empty.employee')}
+            </#if>
+        </tbody>
+    </table>
+<#else>
+    Project Not Found.
+</#if>
+</@layout.myLayout>

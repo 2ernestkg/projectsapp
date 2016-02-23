@@ -1,0 +1,112 @@
+/* Add additional stylesheets below
+-------------------------------------------------- */
+
+body{
+	font-size:16px;
+}
+
+.form-control{
+	border-radius: 0px;
+}
+
+table{background-color: rgba(225, 225, 225, 0.89);}
+
+.error-template {padding: 40px 15px;text-align: center;}
+
+/*header starts*/
+.navbar-header{
+	width:145px;	
+	margin: 10px;
+}
+.company-name{
+	color:#842E11;
+}
+
+.navbar-bottom-color{
+	border-bottom: 1px solid #00439B;
+}
+
+.navbar{border-radius: 0px;}
+
+.contact-form{margin-top:10px;}
+
+/* navigation link */
+.nav > li > a{
+	padding:17px 8px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #3F4A53;
+}
+
+.navbar-default .navbar-nav > li > a:HOVER {
+    background-color:#625D5D;
+	color:#FFF;
+}
+
+.nav {
+    padding-left: 15px;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    padding-top: 2px;
+}
+
+.navbar-nav > li {
+    float: left;
+    padding: 1px;
+}
+
+/* footer starts */
+.footer{list-style:none;}
+
+.footer-right{
+	margin-top: -5px;
+}
+.footer-copyright{
+	padding-top: 10px;
+}
+/* footer ends */
+
+
+/* contact-us form*/
+.contact-us-form-error{
+	float: right;
+	margin-top: 0px;
+	color: #FF0000;
+}
+.contact-us-form-input-error{
+	border: 1px solid #FF0000;
+}
+.required{
+	margin-top: 0px;
+	color: #FF0000;
+}
+.contact-us-row-width{
+	width:135px;	
+}
+
+
+/* form validation*/
+.form-error-label label.error{
+	width:auto;
+	display:inline;
+	color:#FF0000;
+}
+
+.danger{
+	color: #C92033;
+}
+.success{
+	color: #7DC343;
+}
+.info{
+	color: #2667A0;
+}
+
+.row-margin{
+	margin-top: 35px;
+}
+.ajax-file-upload-error{
+	color:#FF0000;
+}

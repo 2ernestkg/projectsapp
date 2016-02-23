@@ -1,0 +1,31 @@
+<#import "../layout/defaultLayout.ftl.html" as layout/>
+<@layout.myLayout "${i18n('app.name')} ${i18n('employee.add')}">
+<h3 class="page-header">${i18n("employee.add")}</h3>
+<form action="/employee" method="POST" role="form" class="form-horizontal" id="employeeForm">
+<div>
+    <div class="form-group">
+        <label class="col-md-2">${i18n('employee.fName')}</label><span class="required">*</span><h5
+            class="contact-us-form-error">${(flash.invalidFirstName!)}</h5>
+
+        <div class="col-md-4">
+            <input class="form-control" type="text" name="fName" id="fName"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">${i18n('employee.lName')}</label><span class="required">*</span><h5
+            class="contact-us-form-error">${(flash.invalidLastName!)}</h5>
+
+        <div class="col-md-4">
+            <input class="form-control" type="text" name="lName" id="lName"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2"></label>
+        <div class="col-md-4">
+            <input type="submit" class="btn btn-primary" value="${i18n('button.save')}"/>
+            <a href="/employee">${i18n('button.cancel')}</a>
+        </div>
+    </div>
+</div>
+</form>
+</@layout.myLayout>

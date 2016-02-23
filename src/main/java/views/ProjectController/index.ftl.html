@@ -1,0 +1,156 @@
+<#import "../layout/defaultLayout.ftl.html" as layout>
+    <@layout.myLayout "${i18n('app.name')} ${i18n('project.list')}">
+    <h3 class="page-header">${i18n('project.list')}</h3>
+    <#if projects??>
+        <ul class="nav nav-pills">
+            <li role="presentation"><a href="/project/add">${i18n("button.add")}</a></li>
+        </ul>
+        <div>
+            <nav>
+                <ul class="pagination">
+                    <#if currentPage != 1>
+                        <li>
+                            <a href="/project?sortBy=${sortBy}&sortDir=${sortDir}&page=${currentPage - 1}"
+                               aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    </#if>
+                    <#list 1..pages as page>
+                        <#if page == currentPage>
+                            <li class="active"><a
+                                    href="/project?sortBy=${sortBy}&sortDir=${sortDir}&page=${page}">${page}<span
+                                    class="sr-only">(current)</span></a></li>
+                            <#else>
+                                <li>
+                                    <a href="/project?sortBy=${sortBy}&sortDir=${sortDir}&page=${page}">${page}</a>
+                                </li>
+                        </#if>
+                    </#list>
+                    <#if currentPage lt pages>
+                        <li>
+                            <a href="/project?sortBy=${sortBy}&sortDir=${sortDir}&page=${currentPage + 1}"
+                               aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </#if>
+                </ul>
+            </nav>
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <form method="GET">
+                    <th class="table-row-cell"></th>
+                    <th>
+                        <input type="text" class="form-control filter-field" placeholder="${i18n('project.name')}" id="project.name" name="project.name" value="${(project.name!)}"/>
+                    </th>
+                    <th>
+                        <input type="text" class="form-control filter-field" placeholder="${i18n('project.customer')}" id="project.customer" name="project.customer" value="${(project.customer!)}"/>
+                    </th>
+                    <th>
+                        <input type="text" class="form-control filter-field" placeholder="${i18n('project.executor')}" id="project.executor" name="project.executor" value="${(project.executor!)}"/>
+                    </th>
+                    <th class="table-row-cell" colspan="2">
+                        <div class="pull-right">
+                            <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span>Filter</button>
+                            <button class="btn btn-default btn-xs btn-filter" onclick="$('.filter-field').val(''); submit()"><span class="glyphicon glyphicon-refresh"></span>Reset</button>
+                        </div>
+                    </th>
+                    <th></th>
+                    </form>
+                </tr>
+                <tr class="filter-row">
+                    <th>
+                        #
+                        <a link href='
+						<#if sortBy == "id" && sortDir == "asc">
+							/project?page=${currentPage}&sortBy=id&sortDir=desc
+					    <#else>
+					        /project?page=${currentPage}&sortBy=id&sortDir=asc
+						</#if>'>
+						<span class="glyphicon
+						<#if sortBy == 'id' && sortDir == 'asc'>
+							glyphicon-sort-by-attributes
+					    <#elseif sortBy == 'id' && sortDir == 'desc'>
+					        glyphicon-sort-by-attributes-alt
+					    <#else>
+					        glyphicon-sort
+						</#if>"/>
+                        </a>
+                    </th>
+                    <th>${i18n("project.name")}
+                        <a link href="
+						<#if sortBy == 'name' && sortDir == 'asc'>
+							/project?page=${currentPage}&sortBy=name&sortDir=desc
+						<#else>
+						    /project?page=${currentPage}&sortBy=name&sortDir=asc
+						</#if>
+					"><span class="glyphicon
+					 	<#if sortBy == 'name' && sortDir == 'asc'>
+					 		glyphicon-sort-by-attributes
+					 	<#elseif sortBy == 'name' && sortDir == 'desc'>
+					 	    glyphicon-sort-by-attributes-alt
+					 	<#else>
+					 	    glyphicon-sort
+					 	</#if>
+					"></span></a>
+                    </th>
+                    <th>${i18n("project.customer")}</th>
+                    <th>${i18n("project.executor")}</th>
+                    <th>${i18n("project.beginDate")}
+                        <a link href="
+						<#if sortBy == 'beginDate' && sortDir == 'asc'>
+							/project?page=${currentPage}&sortBy=beginDate&sortDir=desc
+						<#else>
+						    /project?page=${currentPage}&sortBy=beginDate&sortDir=asc
+						</#if>
+					"><span class="glyphicon
+					 	<#if sortBy == 'beginDate' && sortDir == 'asc'>
+					 		glyphicon-sort-by-attributes
+					 	<#elseif sortBy == 'beginDate' && sortDir == 'desc'>
+					 	    glyphicon-sort-by-attributes-alt
+					 	<#else>
+					 	    glyphicon-sort
+					 	</#if>
+					"></span></a>
+                    </th>
+                    <th>${i18n("project.endDate")}
+                        <a link href="
+						<#if sortBy == 'endDate' && sortDir == 'asc'>
+							/project?page=${currentPage}&sortBy=endDate&sortDir=desc
+						<#else>
+						    /project?page=${currentPage}&sortBy=endDate&sortDir=asc
+						</#if>
+					"><span class="glyphicon
+					 	<#if sortBy == 'endDate' && sortDir == 'asc'>
+					 		glyphicon-sort-by-attributes
+					 	<#elseif sortBy == 'endDate' && sortDir == 'desc'>
+					 	    glyphicon-sort-by-attributes-alt
+					 	<#else>
+					 	    glyphicon-sort
+					 	</#if>
+					"></span></a>
+                    </th>
+                    <th></th>
+                </tr>
+                <#list projects as project>
+                    <tr>
+                        <td><a href="/project/${project.id}">${project.id}</a></td>
+                        <td>${project.name}</td>
+                        <td>${project.customer}</td>
+                        <td>${(project.executor!)}</td>
+                        <td>${(project.beginDate?date)!}</td>
+                        <td>${(project.endDate?date)!}</td>
+                        <td>
+                            <a href="/project/${project.id}/delete">${i18n('button.delete')}</a>
+                        </td>
+                    </tr>
+                </#list>
+                </tbody>
+            </table>
+        </div>
+        <#else>
+            There is no project, create one.
+    </#if>
+</@layout.myLayout>

@@ -1,0 +1,103 @@
+<#macro myLayout title="Default layout">
+<#setting date_format="yyyy-MM-dd"/>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>${title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="${i18n('app.name')} ${i18n('app.definition')}">
+    <meta name="description" content="${i18n('app.name')} ${i18n('app.definition')}">
+    <meta name="author" content="Buddhi Bal Thapa">
+
+    <!-- Le styles -->
+    <link href="/assets/webjars/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="stylesheet" href="/assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="/assets/css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="/assets/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="/assets/css/uploadfile.css">
+    
+    <style>
+    body{background: #E4E4E4 none repeat scroll 0% 0%; !important}
+    .btn{border-radius: 0px; !important}
+    #slides {display: none;}
+    .container {margin: 0 auto;}
+
+    /* For tablets & smart phones */
+    @media (max-width: 767px) {
+      body {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .container {
+        width: auto
+      }
+    }
+
+    /* For smartphones */
+    @media (max-width: 480px) {
+      .container {
+        width: auto
+      }
+    }
+
+    /* For smaller displays like laptops */
+    @media (min-width: 768px) and (max-width: 979px) {
+      .container {
+        width: 724px
+      }
+    }
+
+    /* For larger displays */
+    @media (min-width: 1200px) {
+      .container {
+        width: 1240px
+      }
+    }
+  </style>
+
+    <!-- Latest compiled and minified JavaScript -->
+    
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+
+  <body>
+    <div class="container clear-fix">
+    	<#include "header.ftl.html"/>        
+        
+        <#if (flash.error)??>
+            <div class="alert alert-danger">
+                ${flash.error}
+            </div>
+        </#if>
+        
+        <#if (flash.success)??>
+            <div class="alert alert-success">
+                ${flash.success}
+            </div>
+        </#if>
+
+        <#nested/>
+
+        <#include "footer.ftl.html"/>
+        
+    </div> <!-- /container -->
+    <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
+    <script type="text/javascript" src="/assets/webjars/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery-confirm.min.js"></script>
+    <script type="text/javascript" src="/assets/js/custom.js"></script>
+
+    
+</body>
+</html>
+</#macro>

@@ -1,0 +1,65 @@
+<#import "../layout/defaultLayout.ftl.html" as layout/>
+<@layout.myLayout "${i18n('app.name')} ${i18n('employee.detail')}">
+<#if employees??>
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="/employee/add">${i18n("button.add")}</a></li>
+    </ul>
+    <div>
+        <nav>
+            <ul class="pagination">
+                <#if currentPage != 1>
+                    <li>
+                        <a href="/project?page=${currentPage - 1}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                </#if>
+                <#list 1..pages as page>
+                    <#if page == currentPage>
+                        <li class="active"><a
+                                href="/project?page=${page}">${page}<span
+                                class="sr-only">(current)</span></a></li>
+                        <#else>
+                            <li>
+                                <a href="/project?page=${page}">${page}</a>
+                            </li>
+                    </#if>
+                </#list>
+                <#if currentPage lt pages>
+                    <li>
+                        <a href="/project?page=${currentPage + 1}"
+                           aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </#if>
+            </ul>
+        </nav>
+        <table class="table table-striped">
+            <thead>
+                <th>#</th>
+                <th>${i18n("employee.fName")}</th>
+                <th>${i18n("employee.lName")}</th>
+                <th></th>
+            </thead>
+            <tbody>
+            <#list employees as employee>
+                <tr>
+                    <td>${employee.id}</td>
+                    <td>${(employee.fName!)}</td>
+                    <td>${(employee.lName!)}</td>
+                    <td>
+                        <a href="/employee/${employee.id}">${i18n("button.view")}</a>
+                        <a href="/employee/${employee.id}/edit">${i18n("button.edit")}</a>
+                        <a href="/employee/${employee.id}/delete">${i18n("button.delete")}</a>
+                    </td>
+                </tr>
+            </#list>
+            </tbody>
+        </table>
+    </div>
+<#else>
+    ${i18n('employee.list.empty')}
+</#if>
+</@layout.myLayout>
