@@ -40,7 +40,7 @@ set _user_ and _password_ in `src/main/java/conf/application.conf`.
 
 ```
   db.connection.username=user
-  db.connection.password=dbuserpwd
+  db.connection.password=secret
 ```
 
 And then create a `jar` package
